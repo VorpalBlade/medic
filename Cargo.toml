@@ -1,0 +1,23 @@
+[package]
+authors = ["Arvid Norlander"]
+categories = ["command-line-interface"]
+description = "Library for self-diagnostic output for command line tools"
+edition = "2021"
+exclude = ["/.github/"]
+keywords = ["diagnostic", "cli"]
+license = "MPL-2.0"
+name = "medic"
+repository = "https://github.com/VorpalBlade/medic"
+rust-version = "1.75.0"
+version = "0.2.0"
+
+[dependencies]
+anstream = "0.6.12"
+anstyle = "1.0.6"
+anyhow = "1.0.80"
+os_info = { version = "3.7.0", default-features = false }
+rustc_version_runtime = { version = "0.3.0", default-features = false }
+strum = { version = "0.26.1", default-features = false, features = [
+    "derive",
+    "std",
+] }
