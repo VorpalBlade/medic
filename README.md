@@ -15,16 +15,16 @@ some basic info (such as platform, rust version etc) to go on.
 Example output (from [chezmoi_modify_manager]):
 
 ```text
-RESULT    CHECK                MESSAGE
-Info      version              3.1.2
-Warning   build                Github CI build (not official release)
-Info      rustc-version        1.76.0
-Info      host                 os=linux, arch=x86_64, info=Arch Linux Rolling Release [64-bit]
-Ok        has-chezmoi          Chezmoi found. Version: chezmoi version v2.46.1, built at 2024-02-12T09:19:56Z
-Ok        chezmoi-override     CHEZMOI_MODIFY_MANAGER_ASSUME_CHEZMOI_VERSION is not set
-Ok        in-path              chezmoi_modify_manager is in PATH at /home/user/bin/chezmoi_modify_manager
-Ok        has-ignore           Ignore of **/*.src.ini found
-Ok        no-hook-script       No legacy hook script found
+RESULT   CHECK             MESSAGE
+Info     version           3.1.2
+Warning  build             Github CI build (not official release)
+Info     rustc-version     1.76.0
+Info     host              os=linux, arch=x86_64, info=Arch Linux Rolling Release [64-bit]
+Ok       has-chezmoi       Chezmoi found. Version: chezmoi version v2.46.1, built at 2024-02-12T09:19:56Z
+Ok       chezmoi-override  CHEZMOI_MODIFY_MANAGER_ASSUME_CHEZMOI_VERSION is not set
+Ok       in-path           chezmoi_modify_manager is in PATH at /home/user/bin/chezmoi_modify_manager
+Ok       has-ignore        Ignore of **/*.src.ini found
+Ok       no-hook-script    No legacy hook script found
 
 Warning: Warning(s) found, consider investigating (especially if you have issues)
 ```
