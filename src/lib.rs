@@ -36,6 +36,17 @@ use std::{cmp::max, io::Write};
 
 use anstyle::{AnsiColor, Effects, Reset};
 use strum::IntoStaticStr;
+use thiserror::Error;
+
+/// Error from medic
+#[derive(Debug, Error)]
+#[non_exhaustive]
+pub enum MedicError {
+    #[error("IO error")]
+    IoError(#[from] std::io::Error),
+    #[error("Error from check")]
+    CheckError(#[from] Box<dyn std::error::Error + Send + Sync>),
+}
 
 /// Perform environment sanity check
 ///
@@ -43,7 +54,7 @@ use strum::IntoStaticStr;
 pub fn medic<'iter>(
     output: &mut impl Write,
     checks: impl Iterator<Item = &'iter Check>,
-) -> anyhow::Result<CheckResult> {
+) -> Result<CheckResult, MedicError> {
     let mut worst_issues_found = CheckResult::Ok;
     // Buffer output messages so that we can format them in a nice tabl
     let mut results = vec![];
@@ -97,7 +108,7 @@ pub fn medic<'iter>(
 }
 
 /// Print summary line at the end
-pub fn summary(output: &mut impl Write, worst_issues_found: CheckResult) -> anyhow::Result<()> {
+pub fn summary(output: &mut impl Write, worst_issues_found: CheckResult) -> Result<(), MedicError> {
     if worst_issues_found >= CheckResult::Error {
         writeln!(
             output,
@@ -168,7 +179,7 @@ impl std::fmt::Display for CheckResult {
 /// This should return the severity level and a message describing the situation
 ///
 /// Multi-line messages are supported, the framework handles alignment.
-pub type CheckFn = fn() -> anyhow::Result<(CheckResult, String)>;
+pub type CheckFn = fn() -> Result<(CheckResult, String), Box<dyn std::error::Error + Send + Sync>>;
 
 /// A check with a name
 #[derive(Debug)]

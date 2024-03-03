@@ -14,13 +14,13 @@ version = "0.2.0"
 [dependencies]
 anstream = "0.6.12"
 anstyle = "1.0.6"
-anyhow = "1.0.80"
 os_info = { version = "3.7.0", default-features = false }
 rustc_version_runtime = { version = "0.3.0", default-features = false }
 strum = { version = "0.26.1", default-features = false, features = [
     "derive",
     "std",
 ] }
+thiserror = "1.0.57"
 
 [dev-dependencies]
 indoc = "2.0.4"
