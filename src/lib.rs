@@ -4,13 +4,13 @@
 //! that you want the output of `--medic`, `--doctor` or similar. This library
 //! will help generate that output, supplemented by your own checks specific
 //! to your program.
-//! 
+//!
 //! Your checks might be able to catch common mistakes so that the user doesn't
 //! even need to report a bug in the first place. But even if not, now you have
 //! some basic info (such as platform, rust version etc) to go on.
-//! 
+//!
 //! Example output (from [chezmoi_modify_manager](https://github.com/VorpalBlade/chezmoi_modify_manager)):
-//! 
+//!
 //! ```text
 //! RESULT    CHECK                MESSAGE
 //! Info      version              3.1.2
@@ -22,63 +22,97 @@
 //! Ok        in-path              chezmoi_modify_manager is in PATH at /home/user/bin/chezmoi_modify_manager
 //! Ok        has-ignore           Ignore of **/*.src.ini found
 //! Ok        no-hook-script       No legacy hook script found
-//! 
+//!
 //! Warning: Warning(s) found, consider investigating (especially if you have issues)
 //! ```
-//! 
+//!
 //! The actual output is uses ANSI colour codes as well.
 
 pub mod checks;
+#[cfg(test)]
+mod tests;
 
-use anstream::println;
+use std::{cmp::max, io::Write};
+
 use anstyle::{AnsiColor, Effects, Reset};
 use strum::IntoStaticStr;
 
 /// Perform environment sanity check
 ///
 /// Returns the worst level found (which can be passed to [`summary`])
-pub fn medic<'iter>(checks: impl Iterator<Item = &'iter Check>) -> anyhow::Result<CheckResult> {
+pub fn medic<'iter>(
+    output: &mut impl Write,
+    checks: impl Iterator<Item = &'iter Check>,
+) -> anyhow::Result<CheckResult> {
     let mut worst_issues_found = CheckResult::Ok;
-    // TODO: Figure out the maximum length check name and use that for formatting
-    println!(
-        "{}RESULT    CHECK                MESSAGE{}",
-        Effects::BOLD.render(),
-        Reset.render()
-    );
+    // Buffer output messages so that we can format them in a nice tabl
+    let mut results = vec![];
+
     for Check { name, func } in checks {
         match func() {
             Ok((result, text)) => {
-                let text = text.replace('\n', "\n                               ");
-                println!("{result: <9} {name: <20} {text}");
+                results.push((result, *name, text));
                 if result >= worst_issues_found {
                     worst_issues_found = result;
                 }
             }
             Err(err) => {
-                println!("{:<9} {name: <20} {err}", CheckResult::Fatal);
+                results.push((CheckResult::Fatal, *name, format!("{}", err)));
                 worst_issues_found = CheckResult::Fatal;
             }
         }
+    }
+    let mut status_width = "RESULT".len();
+    let mut name_width = "CHECK".len();
+    results.iter().for_each(|(status, name, _)| {
+        status_width = max(
+            status_width,
+            <&CheckResult as Into<&str>>::into(status).len(),
+        );
+        name_width = max(name_width, name.len());
+    });
+
+    let text_alignment = status_width + name_width + 4;
+
+    writeln!(
+        output,
+        "{}{: <status_width$}  {: <name_width$}  MESSAGE{}",
+        Effects::BOLD.render(),
+        "RESULT",
+        "CHECK",
+        Reset.render()
+    )?;
+    for (status, name, text) in results {
+        let text = text.replace(
+            '\n',
+            &("\n".to_owned() + " ".repeat(text_alignment).as_str()),
+        );
+        writeln!(
+            output,
+            "{status: <status_width$}  {name: <name_width$}  {text}"
+        )?;
     }
 
     Ok(worst_issues_found)
 }
 
 /// Print summary line at the end
-pub fn summary(worst_issues_found: CheckResult) {
+pub fn summary(output: &mut impl Write, worst_issues_found: CheckResult) -> anyhow::Result<()> {
     if worst_issues_found >= CheckResult::Error {
-        println!(
+        writeln!(
+            output,
             "\n{}Error{}: Error(s) found, you should rectify these for proper operation",
             AnsiColor::Red.render_fg(),
             Reset.render()
-        );
+        )?;
     } else if worst_issues_found >= CheckResult::Warning {
-        println!(
+        writeln!(output,
             "\n{}Warning{}: Warning(s) found, consider investigating (especially if you have issues)",
             AnsiColor::Yellow.render_fg(),
             Reset.render()
-        );
+        )?;
     }
+    Ok(())
 }
 
 /// Result of a check (the level of severity)

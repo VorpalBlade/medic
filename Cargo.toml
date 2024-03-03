@@ -21,3 +21,7 @@ strum = { version = "0.26.1", default-features = false, features = [
     "derive",
     "std",
 ] }
+
+[dev-dependencies]
+indoc = "2.0.4"
+pretty_assertions = "1.4.0"
