@@ -3,8 +3,7 @@ use pretty_assertions::assert_eq;
 
 #[test]
 fn test_medic() {
-    let checks = vec![
-        Check {
+    let checks = [Check {
             name: "Check 1",
             func: || Ok((CheckResult::Ok, "All good".to_string())),
         },
@@ -15,8 +14,7 @@ fn test_medic() {
         Check {
             name: "Check 3",
             func: || Ok((CheckResult::Fatal, "Very bad".to_string())),
-        },
-    ];
+        }];
     // Get rid of formatting for ease of testing
     let mut out_buf = anstream::StripStream::new(Vec::new());
 
