@@ -14,6 +14,7 @@ pub const CHECK_RUSTC_VERSION: Check = Check {
 };
 
 /// Create a version check (for information only) for the crate the macro is called from.
+#[doc(hidden)]
 #[macro_export]
 macro_rules! crate_version_check {
     () => {
@@ -23,6 +24,7 @@ macro_rules! crate_version_check {
     };
 }
 
+#[doc(inline)]
 pub use crate_version_check;
 
 /// Provide info on the running host system and architecture

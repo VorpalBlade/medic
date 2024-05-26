@@ -28,6 +28,7 @@ pretty_assertions = "1.4.0"
 
 [lints.rust]
 rust-2018-idioms = "warn"
+unreachable_pub = "warn"
 
 [lints.clippy]
 doc_markdown = "warn"
