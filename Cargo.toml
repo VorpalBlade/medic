@@ -16,7 +16,7 @@ anstream = "0.6.14"
 anstyle = "1.0.7"
 os_info = { version = "3.8.2", default-features = false }
 rustc_version_runtime = { version = "0.3.0", default-features = false }
-strum = { version = "0.26.2", default-features = false, features = [
+strum = { version = "0.26.3", default-features = false, features = [
     "derive",
     "std",
 ] }
