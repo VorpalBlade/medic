@@ -1,7 +1,8 @@
+use pretty_assertions::assert_eq;
+
 use crate::medic;
 use crate::Check;
 use crate::CheckResult;
-use pretty_assertions::assert_eq;
 
 #[test]
 fn test_medic() {

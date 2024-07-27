@@ -28,10 +28,6 @@
 //!
 //! The actual output is uses ANSI colour codes as well.
 
-pub mod checks;
-#[cfg(test)]
-mod tests;
-
 use std::cmp::max;
 use std::io::Write;
 
@@ -40,6 +36,10 @@ use anstyle::Effects;
 use anstyle::Reset;
 use strum::IntoStaticStr;
 use thiserror::Error;
+
+pub mod checks;
+#[cfg(test)]
+mod tests;
 
 /// Error from medic
 #[derive(Debug, Error)]
