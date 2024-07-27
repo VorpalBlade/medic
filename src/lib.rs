@@ -59,7 +59,7 @@ pub fn medic<'iter>(
     checks: impl Iterator<Item = &'iter Check>,
 ) -> Result<CheckResult, MedicError> {
     let mut worst_issues_found = CheckResult::Ok;
-    // Buffer output messages so that we can format them in a nice tabl
+    // Buffer output messages so that we can format them in a nice table
     let mut results = vec![];
 
     for Check { name, func } in checks {
