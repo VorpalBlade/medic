@@ -1,6 +1,7 @@
 //! Standard checks to include for most programs
 
-use crate::{Check, CheckResult};
+use crate::Check;
+use crate::CheckResult;
 
 /// Provide info on the rust version used to compile the code
 pub const CHECK_RUSTC_VERSION: Check = Check {

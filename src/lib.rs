@@ -32,9 +32,12 @@ pub mod checks;
 #[cfg(test)]
 mod tests;
 
-use std::{cmp::max, io::Write};
+use std::cmp::max;
+use std::io::Write;
 
-use anstyle::{AnsiColor, Effects, Reset};
+use anstyle::AnsiColor;
+use anstyle::Effects;
+use anstyle::Reset;
 use strum::IntoStaticStr;
 use thiserror::Error;
 
@@ -117,8 +120,10 @@ pub fn summary(output: &mut impl Write, worst_issues_found: CheckResult) -> Resu
             Reset.render()
         )?;
     } else if worst_issues_found >= CheckResult::Warning {
-        writeln!(output,
-            "\n{}Warning{}: Warning(s) found, consider investigating (especially if you have issues)",
+        writeln!(
+            output,
+            "\n{}Warning{}: Warning(s) found, consider investigating (especially if you have \
+             issues)",
             AnsiColor::Yellow.render_fg(),
             Reset.render()
         )?;
