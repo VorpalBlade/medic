@@ -77,13 +77,13 @@ pub fn medic<'iter>(
     }
     let mut status_width = "RESULT".len();
     let mut name_width = "CHECK".len();
-    results.iter().for_each(|(status, name, _)| {
+    for (status, name, _) in &results {
         status_width = max(
             status_width,
             <&CheckResult as Into<&str>>::into(status).len(),
         );
         name_width = max(name_width, name.len());
-    });
+    }
 
     let text_alignment = status_width + name_width + 4;
 
@@ -148,13 +148,13 @@ pub enum CheckResult {
 
 impl CheckResult {
     /// Get style for this severity level
-    fn style(&self) -> anstyle::Style {
+    const fn style(&self) -> anstyle::Style {
         match self {
-            CheckResult::Ok => AnsiColor::Green.on_default(),
-            CheckResult::Info => AnsiColor::Green.on_default(),
-            CheckResult::Warning => AnsiColor::Yellow.on_default(),
-            CheckResult::Error => AnsiColor::Red.on_default(),
-            CheckResult::Fatal => AnsiColor::Red.on_default(),
+            Self::Ok => AnsiColor::Green.on_default(),
+            Self::Info => AnsiColor::Green.on_default(),
+            Self::Warning => AnsiColor::Yellow.on_default(),
+            Self::Error => AnsiColor::Red.on_default(),
+            Self::Fatal => AnsiColor::Red.on_default(),
         }
     }
 }
