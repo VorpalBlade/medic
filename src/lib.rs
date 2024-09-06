@@ -28,12 +28,11 @@
 //!
 //! The actual output is uses ANSI colour codes as well.
 
-use std::cmp::max;
-use std::io::Write;
-
 use anstyle::AnsiColor;
 use anstyle::Effects;
 use anstyle::Reset;
+use std::cmp::max;
+use std::io::Write;
 use strum::IntoStaticStr;
 use thiserror::Error;
 
@@ -71,7 +70,7 @@ pub fn medic<'iter>(
                 }
             }
             Err(err) => {
-                results.push((CheckResult::Fatal, *name, format!("{}", err)));
+                results.push((CheckResult::Fatal, *name, format!("{err}")));
                 worst_issues_found = CheckResult::Fatal;
             }
         }
