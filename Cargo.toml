@@ -29,6 +29,7 @@ pretty_assertions = "1.4.0"
 [lints.rust]
 rust-2018-idioms = "warn"
 unreachable_pub = "warn"
+unused_qualifications = "warn"
 
 [lints.clippy]
 assigning_clones = "warn"

@@ -150,11 +150,11 @@ impl CheckResult {
     /// Get style for this severity level
     fn style(&self) -> anstyle::Style {
         match self {
-            CheckResult::Ok => anstyle::AnsiColor::Green.on_default(),
-            CheckResult::Info => anstyle::AnsiColor::Green.on_default(),
-            CheckResult::Warning => anstyle::AnsiColor::Yellow.on_default(),
-            CheckResult::Error => anstyle::AnsiColor::Red.on_default(),
-            CheckResult::Fatal => anstyle::AnsiColor::Red.on_default(),
+            CheckResult::Ok => AnsiColor::Green.on_default(),
+            CheckResult::Info => AnsiColor::Green.on_default(),
+            CheckResult::Warning => AnsiColor::Yellow.on_default(),
+            CheckResult::Error => AnsiColor::Red.on_default(),
+            CheckResult::Fatal => AnsiColor::Red.on_default(),
         }
     }
 }
