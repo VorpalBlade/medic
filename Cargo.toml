@@ -12,7 +12,7 @@ rust-version = "1.75.0"
 version = "0.3.1"
 
 [dependencies]
-anstream = "0.6.17"
+anstream = "0.6.18"
 anstyle = "1.0.10"
 os_info = { version = "3.8.2", default-features = false }
 rustc_version_runtime = { version = "0.3.0", default-features = false }
@@ -20,7 +20,7 @@ strum = { version = "0.26.3", default-features = false, features = [
     "derive",
     "std",
 ] }
-thiserror = "1.0.66"
+thiserror = { version = "2.0.1", default-features = false }
 
 [dev-dependencies]
 indoc = "2.0.5"
