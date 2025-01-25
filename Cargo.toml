@@ -2,13 +2,13 @@
 authors = ["Arvid Norlander"]
 categories = ["command-line-interface"]
 description = "Library for self-diagnostic output for command line tools"
-edition = "2021"
+edition = "2024"
 exclude = ["/.github/"]
 keywords = ["diagnostic", "cli"]
 license = "MPL-2.0"
 name = "medic"
 repository = "https://github.com/VorpalBlade/medic"
-rust-version = "1.75.0"
+rust-version = "1.85.0"
 version = "0.3.2"
 
 [dependencies]
