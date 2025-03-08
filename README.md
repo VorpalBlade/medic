@@ -33,7 +33,7 @@ The actual output is uses ANSI colour codes as well.
 
 ## MSRV
 
-Current minimum supported Rust version is 1.75.0. This may be updated as
+Current minimum supported Rust version is 1.81.0. This may be updated as
 needed. MSRV bump is not considered a semver breaking change.
 
 ## Credits

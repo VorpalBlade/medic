@@ -8,22 +8,22 @@ keywords = ["diagnostic", "cli"]
 license = "MPL-2.0"
 name = "medic"
 repository = "https://github.com/VorpalBlade/medic"
-rust-version = "1.75.0"
+rust-version = "1.81.0"
 version = "0.3.2"
 
 [dependencies]
 anstream = "0.6.18"
 anstyle = "1.0.10"
-os_info = { version = "3.9.2", default-features = false }
+os_info = { version = "3.10.0", default-features = false }
 rustc_version_runtime = { version = "0.3.0", default-features = false }
-strum = { version = "0.27.0", default-features = false, features = [
+strum = { version = "0.27.1", default-features = false, features = [
     "derive",
     "std",
 ] }
-thiserror = { version = "2.0.11", default-features = false }
+thiserror = { version = "2.0.12", default-features = false }
 
 [dev-dependencies]
-indoc = "2.0.5"
+indoc = "2.0.6"
 pretty_assertions = "1.4.1"
 
 [lints.rust]
