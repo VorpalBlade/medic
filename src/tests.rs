@@ -1,6 +1,6 @@
-use crate::medic;
 use crate::Check;
 use crate::CheckResult;
+use crate::medic;
 use pretty_assertions::assert_eq;
 
 #[test]
