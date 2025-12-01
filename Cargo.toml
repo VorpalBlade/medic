@@ -8,7 +8,7 @@ keywords = ["cli", "diagnostic"]
 license = "MPL-2.0"
 name = "medic"
 repository = "https://github.com/VorpalBlade/medic"
-rust-version = "1.85.0"
+rust-version = "1.86.0"
 version = "0.3.3"
 
 [dependencies]
