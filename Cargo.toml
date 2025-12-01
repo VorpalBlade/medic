@@ -12,18 +12,18 @@ rust-version = "1.85.0"
 version = "0.3.3"
 
 [dependencies]
-anstream = "0.6.20"
-anstyle = "1.0.11"
-os_info = { version = "3.12.0", default-features = false }
+anstream = "0.6.21"
+anstyle = "1.0.13"
+os_info = { version = "3.13.0", default-features = false }
 rustc_version_runtime = { version = "0.3.0", default-features = false }
 strum = { version = "0.27.2", default-features = false, features = [
     "derive",
     "std",
 ] }
-thiserror = { version = "2.0.16", default-features = false }
+thiserror = { version = "2.0.17", default-features = false }
 
 [dev-dependencies]
-indoc = "2.0.6"
+indoc = "2.0.7"
 pretty_assertions = "1.4.1"
 
 [lints.rust]
