@@ -14,7 +14,7 @@ version = "0.3.4"
 [dependencies]
 anstream = "0.6.21"
 anstyle = "1.0.13"
-os_info = { version = "3.13.0", default-features = false }
+os_info = { version = "3.14.0", default-features = false }
 rustc_version_runtime = { version = "0.3.0", default-features = false }
 strum = { version = "0.27.2", default-features = false, features = [
     "derive",
