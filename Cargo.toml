@@ -9,7 +9,7 @@ license = "MPL-2.0"
 name = "medic"
 repository = "https://github.com/VorpalBlade/medic"
 rust-version = "1.90.0"
-version = "0.3.4"
+version = "0.3.5"
 
 [dependencies]
 anstream = "1.0.0"
